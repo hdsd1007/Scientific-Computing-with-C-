@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]){
 
-    //Getting the number of grid points from Command Line
+    //Getting the number of grid points  from Command Line
     int N = atoi(argv[1]);
 
     //Assert that number of grid points greater than 1

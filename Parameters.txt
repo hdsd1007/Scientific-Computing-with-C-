@@ -1,0 +1,8 @@
+Parameters                  Specification   
+Weight(light)               1600000
+Weight(heavy)               2830000
+Wing_Span                   59.74
+Wing_Area                   520.2
+Zero_Lift_Drag              0.036
+Span_Efficieny_Factor       0.7 
+Stall_Speed                 200

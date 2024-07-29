@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     //Creating Shared Pointer
     std::shared_ptr<int> p_x(new int);
     std::cout << "Shared Pointer p_x is pointing to the Memory Location: " << p_x.get() << std::endl;
-    std::cout << "p_x Use Count : " << p_x.use_count() << std::endl;
+    std::cout << "p_x Use Count : " << p_x.use_count() << std::endl; //The count is 1 when it is created
 
     //Using Pointer De-referencing to assign a value to pointer p_x
     *p_x = 5;

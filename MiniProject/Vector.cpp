@@ -25,7 +25,7 @@ Vector::Vector(const Vector &otherVector)
     }
 }
 
-// Overridden Destructor to Correctly Free Memory
+// Overridden Destructor(~) to Correctly Free Memory
 Vector::~Vector()
 {
     delete[] mData;
@@ -59,4 +59,64 @@ double& Vector::operator()(int i)
 {
     assert(i > 0 && i < mSize + 1);
     return mData[i-1];
+}
+
+//Overloading the Assignment Operator
+Vector& Vector::operator=(const Vector &otherVector)
+{
+    assert(mSize == otherVector.mSize);
+    //Ensure LHS == RHS (in that order)
+    for(int i=0; i < mSize; i++)
+    {
+        mData[i] = otherVector.mData[i];
+    }
+    return *this;
+}
+
+//Overloading the Unary + Operator
+Vector Vector::operator+() const
+{
+    Vector v(mSize);
+    for(int i=0; i < mSize; i++)
+    {
+        v[i] = mData[i];
+    }
+
+    return v;
+}
+
+//Overloading the Unary - Operator
+Vector Vector::operator-() const
+{
+    Vector v(mSize);
+    for(int i=0; i < mSize; i++)
+    {
+        v[i] = -mData[i];
+    }
+
+    return v;
+}
+
+//Overloading Binary + operator
+Vector Vector::operator+(const Vector &v1) const
+{
+    assert(mSize == v1.mSize);
+    Vector v(mSize);
+    for(int i=0; i < mSize; i++)
+    {
+        v[i] = mData[i] + v1.mData[i];
+    }
+    return v;
+}
+
+//Overloading Binary - operator
+Vector Vector::operator-(const Vector &v1) const
+{
+    assert(mSize == v1.mSize);
+    Vector v(mSize);
+    for(int i=0; i < mSize; i++)
+    {
+        v[i] = mData[i] - v1.mData[i];
+    }
+    return v;
 }

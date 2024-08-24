@@ -61,6 +61,38 @@ int main(int argc, char *argv[])
     std::cout << "V1(1) " << V1(1);
     std::cout << " V1(2) " << V1(2);
     std::cout << " V1(3) "  << V1(3);
+    std::cout << std::endl;
+    
+    //Matrix Calculus Basics (Addition and Subtraction)
+    std::cout << "Testing the Unary(-) Operator" << std::endl;
+    std::cout << "Creating Matrix V4 = - V1" << std::endl;
+
+    //Create new vector V4
+    Vector V4 = -V1;
+    for(int i; i < V4.GetSize(); i++)
+    {
+        std::cout << V4[i] << " ";
+    }
+    std::cout << std::endl;
+
+    std::cout << "Testing the Binary(+) Operator" << std::endl;
+    std::cout << "Creating Matrix V4 = V1 + V3" << std::endl;
+    V4 = V1 + V3;
+    for(int i; i < V4.GetSize(); i++)
+    {
+        std::cout << V4[i] << " ";
+    }
+    std::cout << std::endl;   
+
+    std::cout << "Testing the Binary(-) Operator" << std::endl;
+    std::cout << "Creating Matrix V4 = -V1 - V2 - V3" << std::endl;
+    V4 = -V1 - V2 - V3;
+    for(int i; i < V4.GetSize(); i++)
+    {
+        std::cout << V4[i] << " ";
+    }
+    std::cout << std::endl;      
+    
 
     return 0;
 }

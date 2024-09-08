@@ -176,25 +176,42 @@ Matrix Matrix::operator*(const Matrix &v1) const
 //Calculating the determinant of the Matrix
 double Matrix::CalculateDet() const
 {
-    assert(mnum_rows == mnum_cols && "Determinant is only defined for square matrices");
+     assert(mnum_rows == mnum_cols && "Determinant is only defined for square matrices");
     
-    if (mnum_rows == 1)
-    {
-        return mData[0][0];
+    // LU Decomposition
+    Matrix L(mnum_rows, mnum_cols);
+    Matrix U(mnum_rows, mnum_cols);
+
+    for (int i = 0; i < mnum_rows; i++) {
+        // Upper Triangular
+        for (int k = i; k < mnum_cols; k++) {
+            double sum = 0.0;
+            for (int j = 0; j < i; j++) {
+                sum += L(j+1, i+1) * U(i+1, k+1);
+            }
+            U(i+1, k+1) = mData[i][k] - sum;
+        }
+
+        // Lower Triangular
+        for (int k = i; k < mnum_rows; k++) {
+            if (i == k) {
+                L(i+1, i+1) = 1.0; // Diagonal as 1
+            } else {
+                double sum = 0.0;
+                for (int j = 0; j < i; j++) {
+                    sum += L(k+1, j+1) * U(j+1, i+1);
+                }
+                L(k+1, i+1) = (mData[k][i] - sum) / U(i+1, i+1);
+            }
+        }
     }
-    else if (mnum_rows == 2)
-    {
-        return mData[0][0] * mData[1][1] - mData[0][1] * mData[1][0];
+
+    // Calculate determinant as product of diagonal elements of U
+    double det = 1.0;
+    for (int i = 0; i < mnum_rows; i++) {
+        det *= U(i+1, i+1);
     }
-    else if (mnum_rows == 3)
-    {
-        return mData[0][0] * (mData[1][1] * mData[2][2] - mData[1][2] * mData[2][1])
-             - mData[0][1] * (mData[1][0] * mData[2][2] - mData[1][2] * mData[2][0])
-             + mData[0][2] * (mData[1][0] * mData[2][1] - mData[1][1] * mData[2][0]);
-    }
-    else
-    {
-        throw std::runtime_error("Determinant calculation is only implemented for matrices up to 3x3");
-    }
+
+    return det;
     
 }

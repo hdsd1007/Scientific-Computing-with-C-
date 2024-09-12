@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Main",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-O3",                            // Optimization level
+                "-o", "main",                     // Output executable name
+                "main.cpp",                       // Source file
+                "BoundaryConditions.cpp",         // Other source files
+                "BvpOde.cpp",
+                "FiniteDifferenceGrid.cpp",
+                "Vector.cpp",
+                "Matrix.cpp",
+                "LinearSystem.cpp"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true                 // Make this the default build task
+            },
+            "problemMatcher": [
+                "$gcc"                            // Recognizes errors from GCC
+            ],
+            "detail": "Compiles all source files into the executable 'main'."
+        }
+    ]
+}

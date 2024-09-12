@@ -10,7 +10,7 @@ class Matrix
         double **mData;  // Pointer that stores data (first entry of row)
     public:
         Matrix(int rows, int cols); // Constructor
-        Matrix(const Matrix &m); // Copy Constructor
+        //Matrix(const Matrix &m); // Copy Constructor
         ~Matrix(); // Destructor
 
         int GetRows() const; // Method to get number of rows

@@ -63,10 +63,6 @@ class BvpOde
         void Solve();
         void WriteSolutionFile();
 
-
-
-
-
 };
 
 #endif
